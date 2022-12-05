@@ -156,10 +156,12 @@ public class LottoGameFunction {
 		}
 	}
 	
+	//현재 잔액을 return함
 	public int nowMoney() {
 		return lottoGame.getMoney();
 	}
 	
+	//최종 등급과 복권 구입횟수 출력
 	public void lastPrint() {
 		System.out.println("최종 복권 구입수 : " + lottoGame.getPlayCount());
 		System.out.println("최종 등급 : " + lottoGame.getLevel());

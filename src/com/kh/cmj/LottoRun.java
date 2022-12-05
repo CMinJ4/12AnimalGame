@@ -9,7 +9,7 @@ public class LottoRun {
 		while(true) {
 			int choice = lFunc.printMenu();
 			lFunc.levelSet();
-			 
+			
 			switch(choice) {
 			case 1 :
 				lFunc.gameRules();

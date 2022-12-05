@@ -43,7 +43,7 @@ public class LottoGame {
 		this.money = money;
 	}
 	
-	public void setPlayCount(int playCount) {
+	public void setPlayCount(int playCount) {//복권 구입수 저장
 		this.playCount = playCount;
 	}
 	
