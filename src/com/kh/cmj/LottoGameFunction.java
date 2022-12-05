@@ -11,28 +11,51 @@ public class LottoGameFunction {
 		lottoGame = new LottoGame();
 	}
 	
+	//첫 출력화면 딱 한번 실행됨.
 	public void startGame() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("====== 12지신 복권 게임 ======");
 		System.out.print("사용자 이름 입력 : ");
 		lottoGame.setName(sc.next());
 		
-		System.out.print("초기 자금 : ");
-		lottoGame.setMoney(sc.nextInt());
-		System.out.println();
+		end:
+		while(true) {
+			try{	
+				System.out.print("초기 자금 : ");
+				lottoGame.setMoney(sc.nextInt());
+				System.out.println(lottoGame.getMoney());
+				System.out.println();
+				break end;
+			}catch(java.util.InputMismatchException e) {
+				System.out.println("숫자만 입력하세요!");
+				sc.next();
+			}
+		}
 	}
 	
 	//메뉴 출력화면
 	public int printMenu() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("====== 12지신 복권 게임 ======");
-		System.out.println("1. 게임 설명.");
-		System.out.println("2. 복권 구입.");
-		System.out.println("3. 정보 출력.");
-		System.out.println("4. 게임 종료.");
-		System.out.print("메뉴 입력 : ");
-		int menu = sc.nextInt();
-		System.out.println();
+			int menu = 0;
+		end:
+			
+		while(true) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("====== 12지신 복권 게임 ======");
+			System.out.println("1. 게임 설명.");
+			System.out.println("2. 복권 구입.");
+			System.out.println("3. 정보 출력.");
+			System.out.println("4. 게임 종료.");
+			System.out.print("메뉴 입력 : ");
+			try {
+				menu = sc.nextInt();
+				System.out.println();
+				break end;
+			}catch(java.util.InputMismatchException e) {
+				System.out.println();
+				System.out.printf("다시 입력해주세요.\n\n");
+				sc.next();
+			}
+		}
 		return menu;
 	}
 	
@@ -46,11 +69,11 @@ public class LottoGameFunction {
 		System.out.println();
 		System.out.println("예시");
 		System.out.println("복권 3000원 구입.");
-		System.out.println("[용][용] [당첨] -> 6000원");
-		System.out.println("[토][호] [낙첨] -> 0원");
-		System.out.println("[개][소] [낙첨] -> 0원");
-		System.out.println("[쥐][용] [낙첨] -> 0원");
-		System.out.println("[닭][닭] [당첨] -> 6000원");
+		System.out.println("[[[용]]][[[용]]] [당첨] -> 6000원");
+		System.out.println("[[토끼]][호랑이] [낙첨] -> 0원");
+		System.out.println("[[[개]]][[[소]]] [낙첨] -> 0원");
+		System.out.println("[[[쥐]]][[[용]]] [낙첨] -> 0원");
+		System.out.println("[[[닭]]][[[닭]]] [당첨] -> 6000원");
 		System.out.println("이렇게 되면 한게임에 총 12000원 당첨 입니다.");
 		System.out.println();
 		System.out.println("플레이어 등급안내");
@@ -73,7 +96,7 @@ public class LottoGameFunction {
 		
 		String [] playerLotto = new String[10]; // 플레이어 구입한 복권을 숫자로 저장 1 ~ 12
 		//playerLotto[0 ~ 9]
-		String [] god12 = {"쥐", "소", "호", "토", "용", "뱀", "말", "양", "원", "닭", "개", "돼"};
+		String [] god12 = {"[[쥐]]", "[[소]]", "호랑이", "[토끼]", "[[용]]", "[[뱀]]", "[[말]]", "[[양]]", "원숭이", "[[닭]]", "[[개]]", "[돼지]"};
 		//쥐 / 소 / 호랑이 / 토끼 / 용 / 뱀 / 말 / 양 / 원숭이 / 닭 / 개 / 돼지
 		//god12[0 ~ 11]
 		while(true) {
@@ -111,8 +134,6 @@ public class LottoGameFunction {
 				break;
 			}
 		}
-		
-		
 	}
 	// 현재상태 출력
 	public void showPlayer() {
@@ -133,5 +154,14 @@ public class LottoGameFunction {
 		}else if(lottoGame.getMoney() > 1000000) {
 			lottoGame.setLevel("골드");
 		}
+	}
+	
+	public int nowMoney() {
+		return lottoGame.getMoney();
+	}
+	
+	public void lastPrint() {
+		System.out.println("최종 복권 구입수 : " + lottoGame.getPlayCount());
+		System.out.println("최종 등급 : " + lottoGame.getLevel());
 	}
 }
