@@ -1,10 +1,11 @@
 package com.kh.cmj;
 
 public class LottoGame {
-	private String name;
-	private String level;
-	private	int money;
-	private int playCount;
+	private String name; // 이름
+	private String level; // 등급
+	private	int money; // 잔액
+	private int playCount; // 게임횟수
+	private int difficulty; // 게임 난이도
 	
 	// 초기화
 	public LottoGame() {
@@ -34,6 +35,10 @@ public class LottoGame {
 		return level;
 	}
 	
+	public int getDifficulty() {
+		return difficulty;
+	}
+	
 	// setter 메소드
 	public void setName(String name) {
 		this.name = name;
@@ -49,6 +54,10 @@ public class LottoGame {
 	
 	public void setLevel(String level) {
 		this.level = level;
+	}
+	
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
 	}
 	
 }

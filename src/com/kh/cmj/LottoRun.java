@@ -20,8 +20,13 @@ public class LottoRun {
 			case 3 :
 				lFunc.showPlayer();
 				break;
-			case 4 :				
+			case 4 :
+				lFunc.setDifficulty();
+				break;
+			case 5 :				
 				System.out.printf("게임을 종료합니다.\n\n");
+				lFunc.lastPrint();
+				System.out.printf("수고하셨습니다 : )\n\n");
 				System.out.println();
 				break end;
 			default :
